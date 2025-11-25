@@ -1,43 +1,28 @@
-# SQLite. Versions 3.8.0 and up are supported.
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem "sqlite3"
-#
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
 
-development:
-  <<: *default
-  database: storage/development.sqlite3
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: storage/test.sqlite3
-
-
-# Production uses PostgreSQL provided by Railway (via DATABASE_URL)
+# Production uses PostgreSQL provided by Railway
 production:
   primary:
+    <<: *default
     url: <%= ENV["DATABASE_URL"] %>
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
   cache:
+    <<: *default
     url: <%= ENV["DATABASE_URL"] %>
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
     database: <%= ENV.fetch("CACHE_DATABASE") { "railspower_cache" } %>
     migrations_paths: db/cache_migrate
+
   queue:
+    <<: *default
     url: <%= ENV["DATABASE_URL"] %>
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
     database: <%= ENV.fetch("QUEUE_DATABASE") { "railspower_queue" } %>
     migrations_paths: db/queue_migrate
+
   cable:
+    <<: *default
     url: <%= ENV["DATABASE_URL"] %>
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
     database: <%= ENV.fetch("CABLE_DATABASE") { "railspower_cable" } %>
     migrations_paths: db/cable_migrate
