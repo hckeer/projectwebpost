@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" class="<%= current_theme %>">
+  <head>
+    <title>Admin Panel - ContentHub</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="flex">
+      <!-- Sidebar -->
+      <aside class="fixed inset-y-0 left-0 w-64 bg-gray-900 dark:bg-gray-950 text-white">
+        <div class="flex items-center gap-2 px-6 py-4 border-b border-gray-800">
+          <%= link_to root_path, class: "flex items-center gap-2" do %>
+            <div class="w-8 h-8 bg-gradient-to-br from-violet-600 to-indigo-600 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+              </svg>
+            </div>
+            <span class="font-bold">Admin Panel</span>
+          <% end %>
+        </div>
+
+        <nav class="p-4 space-y-1">
+          <%= link_to admin_root_path, class: "flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors #{request.path == admin_root_path ? 'bg-gray-800 text-violet-400' : 'text-gray-300'}" do %>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+            </svg>
+            Dashboard
+          <% end %>
+
+          <%= link_to admin_users_path, class: "flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors #{request.path.include?('admin/users') ? 'bg-gray-800 text-violet-400' : 'text-gray-300'}" do %>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            Users
+          <% end %>
+
+          <%= link_to admin_posts_path, class: "flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors #{request.path.include?('admin/posts') ? 'bg-gray-800 text-violet-400' : 'text-gray-300'}" do %>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Posts
+          <% end %>
+
+          <%= link_to admin_categories_path, class: "flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors #{request.path.include?('admin/categories') ? 'bg-gray-800 text-violet-400' : 'text-gray-300'}" do %>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+            </svg>
+            Categories
+          <% end %>
+
+          <%= link_to admin_tags_path, class: "flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors #{request.path.include?('admin/tags') ? 'bg-gray-800 text-violet-400' : 'text-gray-300'}" do %>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+            </svg>
+            Tags
+          <% end %>
+
+          <div class="pt-4 mt-4 border-t border-gray-800">
+            <%= link_to root_path, class: "flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800 transition-colors text-gray-300" do %>
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+              Back to Site
+            <% end %>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="ml-64 flex-1">
+        <!-- Top Bar -->
+        <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+          <div class="flex items-center justify-between">
+            <h1 class="text-xl font-semibold text-gray-900 dark:text-white">
+              <%= yield :page_title %>
+            </h1>
+            <div class="flex items-center gap-4">
+              <span class="text-sm text-gray-600 dark:text-gray-400">
+                Logged in as <strong><%= current_user.display_name %></strong>
+              </span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Flash Messages -->
+        <% if notice.present? %>
+          <div class="mx-6 mt-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200 px-4 py-3 rounded-lg">
+            <%= notice %>
+          </div>
+        <% end %>
+
+        <% if alert.present? %>
+          <div class="mx-6 mt-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 px-4 py-3 rounded-lg">
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <!-- Page Content -->
+        <main class="p-6">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
