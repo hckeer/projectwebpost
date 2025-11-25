@@ -7,7 +7,8 @@ production:
   password: <%= ENV['DB_PASSWORD'] %>
   host: <%= ENV['DB_HOST'] %>
 
-  cable:
+cable:
+  production:
     adapter: postgresql
     encoding: unicode
     database: my_production_db
