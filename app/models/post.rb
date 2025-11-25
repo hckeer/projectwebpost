@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :category, optional: true
+  belongs_to :category
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
   has_rich_text :content
@@ -10,6 +10,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, length: { minimum: 5, maximum: 200 }
   validates :slug, presence: true, uniqueness: true
+  validates :category, presence: true
 
   before_validation :generate_slug, if: -> { slug.blank? && title.present? }
 
