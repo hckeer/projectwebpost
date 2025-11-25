@@ -3,26 +3,7 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-# Production uses PostgreSQL provided by Railway
 production:
   primary:
     <<: *default
     url: <%= ENV["DATABASE_URL"] %>
-
-  cache:
-    <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
-    database: <%= ENV.fetch("CACHE_DATABASE") { "railspower_cache" } %>
-    migrations_paths: db/cache_migrate
-
-  queue:
-    <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
-    database: <%= ENV.fetch("QUEUE_DATABASE") { "railspower_queue" } %>
-    migrations_paths: db/queue_migrate
-
-  cable:
-    <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
-    database: <%= ENV.fetch("CABLE_DATABASE") { "railspower_cable" } %>
-    migrations_paths: db/cable_migrate
