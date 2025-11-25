@@ -1,10 +1,17 @@
 production:
-  production:
   adapter: postgresql
   encoding: unicode
-  database: railway
-  username: postgres
-  password: eGKlKYjYyLQZKfUcBrhSwCQOINFiGijO
-  host: gondola.proxy.rlwy.net
-  port: 55382
-  pool: 5
+  database: my_production_db
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+
+  cable:
+    adapter: postgresql
+    encoding: unicode
+    database: my_production_db
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: <%= ENV['DB_USERNAME'] %>
+    password: <%= ENV['DB_PASSWORD'] %>
+    host: <%= ENV['DB_HOST'] %>
