@@ -13,7 +13,7 @@ module Admin
         @posts = @posts.where(user_id: params[:user_id])
       end
 
-      @pagy, @posts = pagy(@posts, limit: 20)
+      @pagy, @posts = pagy(:offset, @posts, limit: 20)
     end
 
     def show

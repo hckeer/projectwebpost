@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     end
 
     @posts = @posts.order(created_at: :desc)
-    @pagy, @posts = pagy(@posts, limit: 12)
+    @pagy, @posts = pagy(:offset, @posts, limit: 12)
   end
 
   def show

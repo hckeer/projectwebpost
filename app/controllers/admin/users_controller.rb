@@ -4,12 +4,12 @@ module Admin
 
     def index
       @users = User.order(created_at: :desc)
-      @pagy, @users = pagy(@users, limit: 20)
+      @pagy, @users = pagy(:offset, @users, limit: 20)
     end
 
     def show
       @posts = @user.posts.includes(:category).order(created_at: :desc)
-      @pagy, @posts = pagy(@posts, limit: 10)
+      @pagy, @posts = pagy(:offset, @posts, limit: 10)
     end
 
     def edit

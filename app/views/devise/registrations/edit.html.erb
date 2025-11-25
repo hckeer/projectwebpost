@@ -1,0 +1,74 @@
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="mb-8">
+    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Account Settings</h2>
+    <p class="text-gray-600 dark:text-gray-400">Manage your account information and password</p>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="space-y-6">
+        <div>
+          <%= f.label :username, class: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" %>
+          <%= f.text_field :username, autocomplete: "username", placeholder: "johndoe", class: "w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-violet-500 focus:border-transparent dark:text-white transition-colors" %>
+          <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Letters, numbers and underscores only (min 3 characters)</p>
+        </div>
+
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "you@example.com", class: "w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-violet-500 focus:border-transparent dark:text-white transition-colors" %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p class="mt-2 text-sm text-amber-600 dark:text-amber-400">Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+        </div>
+
+        <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Change Password</h3>
+          <div class="space-y-5">
+            <div>
+              <%= f.label :password, class: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" do %>
+                New password
+                <span class="text-xs text-gray-500 dark:text-gray-400 font-normal">(leave blank if you don't want to change it)</span>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••••", class: "w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-violet-500 focus:border-transparent dark:text-white transition-colors" %>
+              <% if @minimum_password_length %>
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400"><%= @minimum_password_length %> characters minimum</p>
+              <% end %>
+            </div>
+
+            <div>
+              <%= f.label :password_confirmation, "Confirm new password", class: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••", class: "w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-violet-500 focus:border-transparent dark:text-white transition-colors" %>
+            </div>
+
+            <div>
+              <%= f.label :current_password, class: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" do %>
+                Current password
+                <span class="text-xs text-gray-500 dark:text-gray-400 font-normal">(we need your current password to confirm changes)</span>
+              <% end %>
+              <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "••••••••", class: "w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-violet-500 focus:border-transparent dark:text-white transition-colors" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6">
+          <%= f.submit "Update account", class: "w-full px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-violet-700 hover:to-indigo-700 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all cursor-pointer" %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Delete Account</h3>
+      <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">Once you delete your account, there is no going back. Please be certain.</p>
+      <%= button_to "Delete my account", registration_path(resource_name),
+          data: { confirm: "Are you sure you want to delete your account? This action cannot be undone.", turbo_confirm: "Are you sure you want to delete your account? This action cannot be undone." },
+          method: :delete,
+          class: "px-6 py-3 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 transition-colors cursor-pointer" %>
+    </div>
+
+    <div class="mt-6 text-center">
+      <%= link_to "Back", :back, class: "text-violet-600 dark:text-violet-400 font-medium hover:underline" %>
+    </div>
+  </div>
+</div>

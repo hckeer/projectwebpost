@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   def index
     @posts = current_user.posts.includes(:category, :tags).order(created_at: :desc)
-    @pagy, @posts = pagy(@posts, limit: 10)
+    @pagy, @posts = pagy(:offset, @posts, limit: 10)
 
     @stats = {
       total_posts: current_user.posts.count,
