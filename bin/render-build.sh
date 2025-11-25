@@ -13,8 +13,8 @@ npm run build:css
 bundle exec rails assets:precompile
 
 # Install Solid Cache and Queue migrations
-bundle exec rails solid_cache:install:migrations
-bundle exec rails solid_queue:install:migrations
+bundle exec rails solid_cache:install
+bundle exec rails solid_queue:install
 
 # Run database migrations
 bundle exec rails db:migrate
