@@ -11,14 +11,14 @@ class ApplicationController < ActionController::Base
   helper_method :current_theme
 
   def current_theme
-    cookies[:theme] || 'light'
+    cookies[:theme] || "light"
   end
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :bio, :avatar_image])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :bio, :avatar_image])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :username, :bio, :avatar_image ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :username, :bio, :avatar_image ])
   end
 
   private

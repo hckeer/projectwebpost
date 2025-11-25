@@ -1,6 +1,6 @@
 module Admin
   class UsersController < BaseController
-    before_action :set_user, only: [:show, :edit, :update, :destroy, :promote, :demote]
+    before_action :set_user, only: [ :show, :edit, :update, :destroy, :promote, :demote ]
 
     def index
       @users = User.order(created_at: :desc)

@@ -13,7 +13,7 @@ class HomeController < ApplicationController
   end
 
   def toggle_theme
-    new_theme = current_theme == 'light' ? 'dark' : 'light'
+    new_theme = current_theme == "light" ? "dark" : "light"
     cookies[:theme] = { value: new_theme, expires: 1.year.from_now }
 
     respond_to do |format|

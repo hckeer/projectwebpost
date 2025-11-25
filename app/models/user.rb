@@ -21,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def display_name
-    username.presence || email.split('@').first
+    username.presence || email.split("@").first
   end
 
   def published_posts_count

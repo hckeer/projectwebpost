@@ -11,7 +11,7 @@ class Tag < ApplicationRecord
     left_joins(:posts)
       .where(posts: { status: :published })
       .group(:id)
-      .order('COUNT(posts.id) DESC')
+      .order("COUNT(posts.id) DESC")
   }
 
   def to_param

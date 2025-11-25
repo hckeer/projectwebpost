@@ -1,6 +1,6 @@
 module Admin
   class PostsController < BaseController
-    before_action :set_post, only: [:show, :edit, :update, :destroy, :publish, :archive]
+    before_action :set_post, only: [ :show, :edit, :update, :destroy, :publish, :archive ]
 
     def index
       @posts = Post.includes(:user, :category, :tags).order(created_at: :desc)
