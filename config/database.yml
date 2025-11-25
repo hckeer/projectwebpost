@@ -1,14 +1,7 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
 production:
   primary:
-    <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
-
+    url: <%= ENV['DATABASE_URL'] %>
   cable:
-    <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
-    database: <%= ENV.fetch("CABLE_DATABASE") { "railspower_cable" } %>
+    url: <%= ENV['CABLE_DATABASE_URL'] || ENV['DATABASE_URL'] %>
+  queue:
+    url: <%= ENV['QUEUE_DATABASE_URL'] || ENV['DATABASE_URL'] %>
