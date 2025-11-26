@@ -6,8 +6,9 @@ set -o errexit
 bundle exec rails db:prepare
 
 # Seed database if empty (only on first run)
-if bundle exec rails runner 'exit(User.count == 0 ? 0 : 1)' 2>/dev/null; then
-  echo "Database is empty. Running seeds..."
+# Check if both Users AND Categories exist
+if bundle exec rails runner 'exit(User.count == 0 || Category.count == 0 ? 0 : 1)' 2>/dev/null; then
+  echo "Database is empty or incomplete. Running seeds..."
   bundle exec rails db:seed
 else
   echo "Database already seeded. Skipping..."
