@@ -65,3 +65,6 @@ gem "pundit", "~> 2.5"
 gem "pagy", "~> 43.1"
 
 gem "tailwindcss-rails", "~> 4.4"
+
+gem "cloudinary", "~> 2.4"
+gem "activestorage-cloudinary-service", "~> 0.2.3"
