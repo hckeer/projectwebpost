@@ -16,7 +16,9 @@ bundle exec rails assets:precompile
 bundle exec rails solid_cache:install
 bundle exec rails solid_queue:install
 
-# Run database migrations
+# Run database migrations for ALL databases (primary, queue, cache)
 bundle exec rails db:migrate
+bundle exec rails db:migrate:queue
+bundle exec rails db:migrate:cache
 
 echo "Build completed successfully!"
