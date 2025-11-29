@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @featured_posts = Post.published.featured.includes(:user, :category, :tags).limit(3)
-    @recent_posts = Post.published.recent.includes(:user, :category, :tags).limit(6)
+    # Show latest posts in featured section instead of featured=true posts
+    @featured_posts = Post.published.recent.includes(:user, :category, :tags, images_attachments: :blob).limit(3)
+    @recent_posts = Post.published.recent.includes(:user, :category, :tags, images_attachments: :blob).limit(6)
     @categories = Category.with_posts.limit(6)
     @popular_tags = Tag.popular.limit(10)
   end

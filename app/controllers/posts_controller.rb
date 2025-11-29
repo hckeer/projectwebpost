@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [ :show, :edit, :update, :destroy, :publish, :archive ]
 
   def index
-    @posts = policy_scope(Post).published.includes(:user, :category, :tags)
+    @posts = policy_scope(Post).published.includes(:user, :category, :tags, images_attachments: :blob)
 
     if params[:category].present?
       @category = Category.find_by(slug: params[:category])

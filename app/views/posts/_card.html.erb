@@ -3,7 +3,7 @@
 <article class="<%= featured ? 'lg:col-span-2 lg:row-span-2' : '' %> group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300">
   <% if post.images.attached? %>
     <div class="relative overflow-hidden <%= featured ? 'aspect-video' : 'aspect-video' %>">
-      <%= image_tag post.images.first, class: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500", alt: post.title %>
+      <%= image_tag post.images.first.variant(resize_to_limit: [800, 600]), class: "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500", alt: post.title, loading: "lazy" %>
       <% if post.featured? %>
         <div class="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-semibold rounded-full">
           Featured

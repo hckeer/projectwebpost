@@ -53,7 +53,7 @@
   <!-- Featured Image -->
   <% if @post.images.attached? %>
     <div class="mb-8 rounded-2xl overflow-hidden">
-      <%= image_tag @post.images.first, class: "w-full", alt: @post.title %>
+      <%= image_tag @post.images.first.variant(resize_to_limit: [1200, 800]), class: "w-full", alt: @post.title %>
     </div>
   <% end %>
 

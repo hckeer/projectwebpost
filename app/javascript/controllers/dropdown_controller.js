@@ -7,7 +7,8 @@ export default class extends Controller {
     this.closeOnClickOutside = this.closeOnClickOutside.bind(this)
   }
 
-  toggle() {
+  toggle(event) {
+    event.stopPropagation()
     if (this.menuTarget.classList.contains("hidden")) {
       this.open()
     } else {
@@ -17,7 +18,10 @@ export default class extends Controller {
 
   open() {
     this.menuTarget.classList.remove("hidden")
-    document.addEventListener("click", this.closeOnClickOutside)
+    // Delay adding the click listener to prevent immediate closure
+    setTimeout(() => {
+      document.addEventListener("click", this.closeOnClickOutside)
+    }, 10)
   }
 
   close() {
