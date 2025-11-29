@@ -9,8 +9,8 @@ npm ci
 # Build CSS
 npm run build:css
 
-# Precompile assets
-bundle exec rails assets:precompile
+# Precompile assets (skip database connection)
+RAILS_ENV=production DATABASE_URL=nulldb://user:pass@localhost/db bundle exec rails assets:precompile
 
 # Run database migrations (primary database only)
 bundle exec rails db:migrate
