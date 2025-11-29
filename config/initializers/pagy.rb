@@ -4,4 +4,5 @@
 # Pagy::Method is included in ApplicationController
 # Pagy::Loader is included in ApplicationHelper
 
-require 'pagy/extras/frontend'
+# Pagy 43.x doesn't use the frontend extra anymore
+# Frontend helpers are now included by default
