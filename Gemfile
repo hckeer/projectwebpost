@@ -62,7 +62,7 @@ end
 
 gem "devise", "~> 4.9"
 gem "pundit", "~> 2.5"
-gem "pagy", "~> 43.1"
+gem "pagy", "~> 43.2"
 
 gem "tailwindcss-rails", "~> 4.4"
 
