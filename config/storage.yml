@@ -8,9 +8,22 @@ local:
 
 cloudinary:
   service: Cloudinary
-  cloud_name: <%= ENV['CLOUDINARY_CLOUD_NAME'] %>
-  api_key: <%= ENV['CLOUDINARY_API_KEY'] %>
-  api_secret: <%= ENV['CLOUDINARY_API_SECRET'] %>
+  <%
+    require 'uri'
+    if ENV['CLOUDINARY_URL']
+      uri = URI.parse(ENV['CLOUDINARY_URL'])
+      cloud_name = uri.host
+      api_key = uri.user
+      api_secret = uri.password
+    else
+      cloud_name = ENV['CLOUDINARY_CLOUD_NAME']
+      api_key = ENV['CLOUDINARY_API_KEY']
+      api_secret = ENV['CLOUDINARY_API_SECRET']
+    end
+  %>
+  cloud_name: <%= cloud_name %>
+  api_key: <%= api_key %>
+  api_secret: <%= api_secret %>
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

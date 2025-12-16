@@ -2,6 +2,9 @@
 # exit on error
 set -o errexit
 
+# Default to production if not set
+export RAILS_ENV=${RAILS_ENV:-production}
+
 # Prepare database (creates if needed, runs migrations)
 bundle exec rails db:prepare
 

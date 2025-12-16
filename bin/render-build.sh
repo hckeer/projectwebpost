@@ -2,6 +2,8 @@
 # exit on error
 set -o errexit
 
+export RAILS_ENV=${RAILS_ENV:-production}
+
 # Install dependencies
 bundle install
 npm ci
