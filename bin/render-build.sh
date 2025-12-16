@@ -12,7 +12,7 @@ npm ci
 npm run build:css
 
 # Precompile assets (skip database connection)
-RAILS_ENV=production DATABASE_URL=sqlite3:storage/dummy.sqlite3 bundle exec rails assets:precompile
+RAILS_ENV=production DATABASE_URL=sqlite3:storage/dummy.sqlite3 SECRET_KEY_BASE=dummy bundle exec rails assets:precompile
 
 # Run database migrations (primary database only)
 # bundle exec rails db:migrate
