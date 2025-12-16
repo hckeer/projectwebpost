@@ -15,6 +15,6 @@ npm run build:css
 RAILS_ENV=production DATABASE_URL=sqlite3:storage/dummy.sqlite3 bundle exec rails assets:precompile
 
 # Run database migrations (primary database only)
-bundle exec rails db:migrate
+# bundle exec rails db:migrate
 
 echo "Build completed successfully!"
