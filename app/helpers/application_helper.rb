@@ -1,4 +1,4 @@
 module ApplicationHelper
   include Pagy::Loader
-  include Pagy::Frontend
+  # include Pagy::Frontend
 end
